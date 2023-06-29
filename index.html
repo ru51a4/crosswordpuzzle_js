@@ -19,6 +19,11 @@
             <ul class="nav nav-pills">
 
                 <li class="nav-item"><a href="#" onclick="keke();" class="nav-link">go</a></li>
+                <p>
+                    <span onclick="_counter--;keke()">left</span>
+                    <span class="_c"></span>
+                    <span onclick="_counter++;keke()">right</span>
+                </p>
             </ul>
         </header>
         <div class="row">
@@ -89,7 +94,7 @@
             parent = [];
         }
 
-
+        let _counter = 0;
 
         let arr = document.querySelector("textarea").value.split(" ")
         let pole = [
@@ -203,7 +208,6 @@
             let ka = [];
             let kac = 0;
             let col = false;
-
             let kkk2 = [];
             let kkk
             let cpoletypes = JSON.parse(JSON.stringify(pole));
@@ -300,12 +304,13 @@
                     }
                     html += `</div>`
                 }
+                document.querySelector("._c").innerHTML = `${_counter}/${poles.length - 1}`;
             }
             function getRandomInt(max) {
                 return Math.floor(Math.random() * max);
             }
 
-            htmlBuild(poles[getRandomInt(poles.length - 1)])
+            htmlBuild(poles[_counter])
             document.querySelector(".fff-container").innerHTML = html;
 
         }
