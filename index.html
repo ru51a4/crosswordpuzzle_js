@@ -206,7 +206,8 @@
 
             let kkk2 = [];
             let kkk
-
+            let cpoletypes = JSON.parse(JSON.stringify(pole));
+            let _check = false;
             let print = (type, word, start, r = false, p = true) => {
 
                 if (prints.includes(word)) {
@@ -220,7 +221,12 @@
                     if (cPole[start[0]][start[1]] !== "" && cPole[start[0]][start[1]] !== word.value) {
                         col = true;
                     }
+                    if (cPole[start[0]][start[1]] == word.value && cpoletypes[start[0]][start[1]] == type) {
+                        //   _check = true;
+                    }
                     cPole[start[0]][start[1]] = word.value;
+
+                    cpoletypes[start[0]][start[1]] = type;
                 }
                 let s, t;
                 if (!prints.includes(word.parent) && word.parent) {
@@ -260,6 +266,7 @@
 
             let ee = 0;
             poles = [];
+            let qq = 0
             while (((kek || ee == 0)) && ee < 100) {
                 kek2 = false;
                 ee++;
@@ -270,8 +277,17 @@
                 cPole = JSON.parse(JSON.stringify(pole));
                 cWords = [];
                 col = false;
+                _check = false;
+
+                cpoletypes = JSON.parse(JSON.stringify(pole));
                 kac = ka.length;
-                print(1, tree[0], [10, 10]);
+                if (qq === tree.length - 1) {
+                    qq = 0
+                }
+                print(1, tree[qq++], [10, 10]);
+                if (_check) {
+                    continue;
+                }
                 poles.push(cPole);
             }
             console.log(poles.length)
